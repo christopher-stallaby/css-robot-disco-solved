@@ -1,33 +1,18 @@
-/*
-  This file contains all the animations for the robot face,
-  fulfilling the requirements of the assignment.
-*/
-
-/*
-  Requirement: Animation with disappearing/appearing is shown.
-  Requirement: Animation with color changing is shown.
-*/
-
-/* Blinking animation for the right eye with a 4-second delay between blinks */
 @keyframes delayed-blink {
-  /* The eye is open for most of the animation cycle */
   0%,
   90%,
   100% {
     transform: scaleY(1);
   }
-  /* The blink happens quickly */
   95% {
-    transform: scaleY(0.1);
+    transform: scaleY(0.01);
   }
 }
 
 .robot-eye-right {
-  /* The total animation cycle is 4 seconds, creating the delay between blinks. */
-  animation: delayed-blink 4s infinite ease-in-out;
+  animation: delayed-blink 3s infinite ease-in-out;
 }
 
-/* Eye rolling animation for the left eye */
 @keyframes eye-roll {
   to {
     transform: rotate(360deg);
@@ -35,37 +20,30 @@
 }
 
 .robot-eye-left {
-  /* The origin is set to the top, so it orbits around that point. */
   transform-origin: top;
   animation: eye-roll 3s infinite linear;
 }
 
-/*
-  Requirement: Animation with rotation is shown.
-*/
+
 @keyframes ear-wiggle {
   50% {
-    transform: rotate(-15deg);
+    transform: rotate(-30deg);
   }
 }
 
 .robot-ear-left {
-  transform-origin: middle;
+  transform-origin: top;
   animation: ear-wiggle 1s infinite ease-in-out alternate;
 }
 
 .robot-ear-right {
-  transform-origin: middle;
-  animation: ear-wiggle 1s infinite ease-in-out alternate-reverse;
+  transform-origin: bottom;
+  animation: ear-wiggle 1s infinite ease-in-out alternate;
 }
 
-/*
-  Requirement: Animation with changing dimensions is shown.
-  Requirement: Animation on object hover event is shown.
-*/
 @keyframes nose-twitch {
   50% {
-    transform: scale(1.5);
+    transform: scale(2);
   }
 }
 
@@ -75,24 +53,23 @@
 }
 
 .robot-nose:hover {
-  transform: rotate(20deg) scale(1.2);
+  transform: rotate(90deg) scale(1);
   border-bottom-color: #ff3333;
 }
 
-/*
-  Requirement: Animation with movement around some position is shown.
-*/
+
 @keyframes mouth-chatter {
   to {
-    /* This makes the mouth container shrink vertically, simulating a closing jaw */
     transform: scaleY(0.2);
   }
 }
 
 .robot-teeth {
-  /* The transform originates from the top, so it closes upwards towards the teeth */
   transform-origin: middle;
   animation: mouth-chatter 1s infinite linear alternate;
+}
+.robot-teeth:hover {
+    animation: none;
 }
 
 .robot-tooth:nth-child(2n) {
@@ -100,40 +77,49 @@
 }
 
 @keyframes hair-loss {
-  /* Mid-wave, change color to gray */
   25% {
     background-color: gray;
   }
-  /* Peak of wave, change color to white */
   50% {
     background-color: white;
- 
+  }
+  60% {
+    opacity: 0.5;
+    background-color: white;
   }
   75% {
+    opacity: 0.75;
+    background-color: white;
+  }
+  85% {
     opacity: 0;
     background-color: white;
   }
-  /* End of animation, fade out */
   100% {
     opacity: 0;
-    background-color: white; /* Ensure it's white as it fades */
+    background-color: white;
   }
 }
 
 @keyframes hair-loss-three {
-  /* This animation for the middle hair skips the gray color change */
-  /* Peak of wave, change color to white */
   50% {
     background-color: white;
   }
+  60% {
+    opacity: 0.5;
+    background-color: white;
+  }
   75% {
+    opacity: 0.75;
+    background-color: white;
+  }
+  85% {
     opacity: 0;
     background-color: white;
   }
-  /* End of animation, fade out */
   100% {
     opacity: 0;
-    background-color: white; /* Ensure it's white as it fades */
+    background-color: white;
   }
 }
 
@@ -144,7 +130,6 @@
 }
 
 .robot-hair-three {
-  /* Use the new animation that only changes color to white before fading */
   animation: hair-loss-three 4s infinite ease-in-out;
   animation-delay: 2s;
 }
